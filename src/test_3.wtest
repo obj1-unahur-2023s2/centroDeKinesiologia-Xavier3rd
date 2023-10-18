@@ -1,0 +1,16 @@
+import pacientes.*
+import aparatos.*
+
+describe "tests de la Etapa 3" {
+
+	const nicolas = new PacienteResistente(edad=40, nivelDeFortaleza=20, nivelDeDolor=10)
+	const victoria = new PacienteCaprichoso(edad=30, nivelDeFortaleza=40, nivelDeDolor=30)
+	const nicolas = new PacienteCaprichoso(edad=20, nivelDeFortaleza=50, nivelDeDolor=54)
+	
+	
+	
+	const mag1 = new Magneto()
+	const bici1 = new Bicicleta()
+	const mini1 = new Minitramp()
+
+}

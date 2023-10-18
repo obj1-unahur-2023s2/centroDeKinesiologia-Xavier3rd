@@ -1,0 +1,63 @@
+import pacientes.*
+import aparatos.*
+
+describe "tests de la Etapa 1" {
+	
+	const leonardo = new Paciente(edad=40, nivelDeFortaleza=20, nivelDeDolor=10)
+	const milena = new Paciente(edad=3, nivelDeFortaleza=50, nivelDeDolor=30)
+	
+	const mag1 = new Magneto()
+	const bici1 = new Bicicleta()
+	const mini1 = new Minitramp()
+	
+	
+	test "Leonardo puede usar el magneto" {
+		assert.that(leonardo.puedeUsar(mag1))
+	}
+	
+	test "Leonardo puede usar la bici" {
+		assert.that(leonardo.puedeUsar(bici1))
+	}
+	
+	test "Leonardo puede usar el minitramp" {
+		assert.that(leonardo.puedeUsar(mini1))
+	}
+	
+	test "Milena puede usar el magneto" {
+		assert.that(milena.puedeUsar(mag1))
+	}
+	
+	test "Milena no puede usar la bici" {
+		assert.notThat(milena.puedeUsar(bici1))
+	}
+	
+	test "Milena no puede usar el minitramp" {
+		assert.notThat(milena.puedeUsar(mini1))
+	}
+	
+	test "El nivel de dolor de Leonardo baja a 9 despues de usar el magneto una vez" {
+		leonardo.usar(mag1)
+		assert.equals(9, leonardo.nivelDeDolor())
+	}
+	
+	test "El nivel dolor de Leonardo baja a 6 despues de usar la bici una vez" {
+		leonardo. usar(bici1)
+		assert.equals(6, leonardo.nivelDeDolor())
+	}
+	
+	test "El nivel de fortaleza sube a 23 despues de usar la bici una vez" {
+		leonardo. usar(bici1)
+		assert.equals(23, leonardo.nivelDeFortaleza())	
+	}
+	
+	test "El nivel de fortaleza sube a 24 despues de usar el mintramp una vez" {
+		leonardo. usar(mini1)
+		assert.equals(24, leonardo.nivelDeFortaleza())	
+	}
+	
+	test "El nivel de dolor de Milena baja a 27 despues de usar el magneto una vez" {
+		milena.usar(mag1)
+		assert.equals(27, milena.nivelDeDolor())
+	}
+	
+}

@@ -1,0 +1,28 @@
+import pacientes.*
+import aparatos.*
+
+describe "tests de la Etapa 2" { 
+	
+	const leonardo = new Paciente(edad=40, nivelDeFortaleza=20, nivelDeDolor=10)
+	const milena = new Paciente(edad=3, nivelDeFortaleza=50, nivelDeDolor=30)
+	
+	const mag1 = new Magneto()
+	const bici1 = new Bicicleta()
+	const mini1 = new Minitramp()
+	
+	
+	method initialize() {
+		leonardo.asignarRutina([bici1, mini1, bici1, mag1])
+		milena.asignarRutina([mag1, bici1])
+	}
+	
+	test "Leonardo puede hacer todas las rutinas" {
+		assert.that(leonardo.puedeHacerLaRutina())
+	}
+	
+	test "Milena no puede hacer todas las rutinas" {
+		assert.notThat(milena.puedeHacerLaRutina())
+	}
+}
+	
+	
