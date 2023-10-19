@@ -6,7 +6,7 @@ class Paciente {
 	var nivelDeFortaleza
 	var nivelDeDolor
 	
-	const rutinaAsignada = []
+	const property rutinaAsignada = []
 	
 	method nivelDeFortaleza() = nivelDeFortaleza
 	method nivelDeFortaleza(unValor) {

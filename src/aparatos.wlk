@@ -32,6 +32,6 @@ class Minitramp inherits Aparato {
 	
 	override method puedeUsarlo(paciente) = paciente.nivelDeDolor() < 20
 	override method efectoSobrePaciente(paciente){
-		paciente.nivelDeFortaleza(paciente.nivelDeFortaleza() * 1.1)
+		paciente.nivelDeFortaleza(paciente.edad() * 0.1)
 	}
 }

@@ -5,12 +5,70 @@ describe "tests de la Etapa 3" {
 
 	const nicolas = new PacienteResistente(edad=40, nivelDeFortaleza=20, nivelDeDolor=10)
 	const victoria = new PacienteCaprichoso(edad=30, nivelDeFortaleza=40, nivelDeDolor=30)
-	const nicolas = new PacienteCaprichoso(edad=20, nivelDeFortaleza=50, nivelDeDolor=54)
+	const julian = new PacienteCaprichoso(edad=20, nivelDeFortaleza=50, nivelDeDolor=54)
+	const zoe = new PacienteRapidaRecuperacion(edad=50, nivelDeFortaleza=40, nivelDeDolor=14)
 	
 	
 	
-	const mag1 = new Magneto()
+	const mag1 = new Magneto(color="verde")
 	const bici1 = new Bicicleta()
+	const biciRoja = new Bicicleta(color= "rojo")
 	const mini1 = new Minitramp()
+	
+	method initialize() {
+		nicolas.asignarRutina([bici1, mini1, bici1, mag1])
+		victoria.asignarRutina([bici1, mini1, bici1, mag1])
+		julian.asignarRutina([biciRoja, mag1, bici1])
+		zoe.asignarRutina([bici1, mini1, bici1, mag1])
+		
+	}
+	
+	test "Nicolas puede hacer la rutina asignada" {
+		assert.that(nicolas.puedeHacerLaRutina())
+	}
+	
+	test "El nivel de dolor de Nicolas baja a 1.8 despues de hacer la rutina" {
+		nicolas.realizarRutina()
+		assert.equals(1.8, nicolas.nivelDeDolor())
+	}
+	
+	test "El nivel de fortaleza de Nicolas sube a 34 despues de hacer la rutina" {
+		nicolas.realizarRutina()
+		assert.equals(34, nicolas.nivelDeFortaleza())
+	}
+	
+	test "Victoria no puede hacer la rutina asignada" {
+		assert.notThat(victoria.puedeHacerLaRutina())
+	}
+	
+	test "Julian puede hacer la rutina asignada" {
+		assert.that(julian.puedeHacerLaRutina())
+	}
+	
+	test "El nivel de dolor de Julian baja a 29.3 despues de hacer la rutina" {
+		julian.realizarRutina()
+		assert.equals(29.3, julian.nivelDeDolor())
+	}
+	
+	test "El nivel de fortaleza de Julian sube a 62 despues de hacer la rutina" {
+		julian.realizarRutina()
+		assert.equals(62, julian.nivelDeFortaleza())
+	}
+	
+	test "Zoe puede hacer la rutina asignada" {
+		assert.that(zoe.puedeHacerLaRutina())
+	}
+	
+	test "El nivel de dolor de Zoe baja a 3.4 despues de hacer la rutina con un valor de recuperacion de 2" {
+		valorDeRecuperacion.valorDeRecuperacion(2)
+		zoe.realizarRutina()
+		assert.equals(3.4, zoe.nivelDeDolor())
+	}
+	
+	test "El nivel de fortaleza de Zoe sube a 51 despues de hacer la rutina con un valor de recuperacion de 2" {
+		valorDeRecuperacion.valorDeRecuperacion(2)
+		zoe.realizarRutina()
+		assert.equals(51, zoe.nivelDeFortaleza())
+	}
 
 }
