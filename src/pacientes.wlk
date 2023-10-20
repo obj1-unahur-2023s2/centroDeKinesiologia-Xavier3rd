@@ -21,24 +21,27 @@ class Paciente {
 	method puedeUsar(aparato) = aparato.puedeUsarlo(self)
 	method usar(unAparato) {
 		if (self.puedeUsar(unAparato)) {
+			unAparato.efectoDelUso(self)
 			unAparato.efectoSobrePaciente(self)
+			
 		}	
 	}
 	
 	method asignarRutina(unaRutina) {
-		rutinaAsignada.addAll(unaRutina)
+		rutinaAsignada.addAll(unaRutina) 
 	}
 	
 	method puedeHacerLaRutina() = rutinaAsignada.all({aparato => self.puedeUsar(aparato)
 	})
 	
 	method realizarRutina() {
-		if (self.puedeHacerLaRutina()){
-			rutinaAsignada.forEach({aparato => self.usar(aparato)})
+		if (!self.puedeHacerLaRutina()){
+			self.error("El paciente no puede realizar la rutina")	
 		}
+		rutinaAsignada.forEach({aparato => self.usar(aparato)})
 	}
 	
-	method cantidadDeRutinas() = rutinaAsignada.size()
+	method cantidadDeAparatoEnLaRutina() = rutinaAsignada.size()
 }
 
 
@@ -47,7 +50,7 @@ class Paciente {
 class PacienteResistente inherits Paciente {
 		override method realizarRutina() {
 			super()
-			self.nivelDeFortaleza(self.cantidadDeRutinas())
+			self.nivelDeFortaleza(self.cantidadDeAparatoEnLaRutina())
 		} 
 }
 
@@ -56,11 +59,13 @@ class PacienteCaprichoso inherits Paciente {
 	method hayAlgunAparatoColor(color) =
 		rutinaAsignada.any({aparato =>aparato.color() == color})
 	
+	override method puedeHacerLaRutina() =
+		super()and self.hayAlgunAparatoColor("rojo")
 	
 	override method realizarRutina() {
-		if (self.puedeHacerLaRutina() and self.hayAlgunAparatoColor("rojo")){
-			rutinaAsignada.forEach({aparato => self.usar(aparato)})
-			rutinaAsignada.forEach({aparato => self.usar(aparato)})
+		if (self.puedeHacerLaRutina()){
+			super()
+			super()
 		}
 	}		
 }

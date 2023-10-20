@@ -20,6 +20,20 @@ describe "tests de la Etapa 2" {
 		assert.that(leonardo.puedeHacerLaRutina())
 	}
 	
+	test "leonardo hace la rutina y su nivel de dolor baja a 1.8" {
+		leonardo.realizarRutina()
+		assert.equals(1.8, leonardo.nivelDeDolor())
+	}
+	
+	test "leonardo hace la rutina y su nivel de fortaleza aumenta a 30" {
+		leonardo.realizarRutina()
+		assert.equals(30, leonardo.nivelDeFortaleza())
+	}
+	
+	test "Milena no puede hacer la rutina y tira error" {
+		assert.throwsException({milena.realizarRutina()})
+	}
+	
 	test "Milena no puede hacer todas las rutinas" {
 		assert.notThat(milena.puedeHacerLaRutina())
 	}
